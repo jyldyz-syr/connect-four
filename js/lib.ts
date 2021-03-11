@@ -14,7 +14,6 @@ class ConnectFour {
   }
 
   getColumnsDOM(): string {
-    console.log(this.columns);
     return this.columns
       .map((column, i) => `<div class="column"> ${this.getColumnDOM(i)} </div>`)
       .join("");
@@ -31,18 +30,11 @@ class ConnectFour {
     return this.players[this.currentTurn];
   }
 
-  turn(): void {
-    // this.currentTurn === this.players.length - 1
-    this.currentTurn === 1
-      ? (this.currentTurn = 0)
-      : this.currentTurn++;
-  }
+  turn(): void {this.currentTurn === 1? (this.currentTurn = 0): this.currentTurn++;}
 
   drop(str: string, column: number): number {
     // Returning 0 indicates the column was already filled up with discs.
-    return this.columns[column].length === 6
-      ? 0
-      : this.columns[column].push(str);
+    return this.columns[column].length === 6? 0: this.columns[column].push(str);
   }
 
   dropByCurrentPlayer(column: number): string | void {
@@ -81,7 +73,7 @@ class ConnectFour {
     return result === continuity;
   }
 
-  //JYLDYZ: shortened with logical OR (||) operator
+  
   checkConnectivity(column: number, row: number, player: string): boolean {
     if (
       this.checkContinuity(this.getColumn(column, row), player, 4) ||
